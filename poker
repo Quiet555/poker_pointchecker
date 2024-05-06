@@ -1,0 +1,37 @@
+# 妞妞
+
+import itertools
+
+cards=input("輸入手裡有的卡片(用空格隔開):\n")
+
+if 'A' in cards:
+    cards=cards.replace('A', '1')
+if 'J' in cards:
+    cards=cards.replace('J', '10')
+if 'Q' in cards:
+    cards=cards.replace('Q', '10')
+if 'K' in cards:
+    cards=cards.replace('K', '10')
+
+cards=cards.split()
+cardnum=[int(i) for i in cards]
+
+index=list(itertools.combinations(cardnum,3))
+for x in index:
+    if sum(x)%10==0:
+        if sum(cardnum)%10==0:
+            point=10
+        else:
+            point=sum(cardnum)%10
+        break
+    else:
+        point=0
+
+if point==10:
+    print('妞妞!')
+elif point==0:
+    print('沒妞..')
+else:
+    print(f'{point}點')
+
+#print(cardnum)
